@@ -8,8 +8,7 @@ import rock_scssior_paper.game.Game;
 import rock_scssior_paper.item.Items;
 import rock_scssior_paper.result.Ment;
 
-public class GameRun {
-
+public class Run {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -18,12 +17,24 @@ public class GameRun {
 		Ment ment = new Ment();
 		
 		System.out.println(ment.getstart());
+		String inputVal = "입력 가능한 값 : ";
 		
+        List<String> itemList = items.getItem();
+		for(int i=0; i<itemList.size(); i++) {
+			if(i == itemList.size()-1) {
+				inputVal += itemList.get(i) + " 입니다.";
+			} else {
+				inputVal += itemList.get(i) + ", ";
+			}
+
+		}
+		
+		System.out.println(inputVal);
 		Scanner scanner = new Scanner(System.in);
         System.out.println(ment.getInputRequest());        
         String userInput = scanner.nextLine();
         
-		List<String> itemList = items.getItem();
+
 		Collections.shuffle(itemList);
 		String result = game.rpsGame(userInput, itemList.get(0));
 		

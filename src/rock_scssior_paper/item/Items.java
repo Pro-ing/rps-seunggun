@@ -15,5 +15,5 @@ public class Items {
 		items.add(item3);
 		
 		return items;
-	}		
+	}
 }
