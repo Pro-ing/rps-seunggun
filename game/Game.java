@@ -6,12 +6,14 @@ import java.util.Random;
 import java.util.Scanner;
 
 import rock_scssior_paper.item.Items;
+import rock_scssior_paper.result.Ment;
 
 public class Game {
 	
 	public void gameStart(){
 		
 		Game game = new Game();
+		Ment ment = new Ment();
         
 		Scanner scanner = new Scanner(System.in);
 		String inputVal = possibleInput();
@@ -23,7 +25,8 @@ public class Game {
 			System.out.println("값을 입력해주세요~");
 			
 			String userInput = scanner.nextLine();
-	        String result = game.rpsGame(userInput);
+	        
+			String result = game.rpsGame(userInput);
 			
 			System.out.println(result);
 			System.out.println("재시작 하시겠습니까?\nYes : Y");
@@ -37,12 +40,9 @@ public class Game {
 	}
 	
     public String rpsGame(String userInput){
-    	String win = "이겼습니다";
-    	String lose = "졌습니다";
-    	String draw = "비겼습니다";
-    	
-    	Items items = new Items();
-    	Scanner scanner = new Scanner(System.in);
+		Items items = new Items();
+		Ment ment = new Ment();
+        Scanner scanner = new Scanner(System.in);
         
     	List<String> itemList = items.getItem();
 		Collections.shuffle(itemList);
@@ -64,32 +64,32 @@ public class Game {
     	}
     	
     	if(userInput.equals(computerInput)) {
-    		result = draw;
+    		result = ment.getDraw();
     	} else {
     		if(userInput.equals("Rock")) {
     			if(computerInput.equals("Scssior")) {
-    				result = win;
+    				result = ment.getWin();
     			}
     			if(computerInput.equals("Paper")) {
-    				result = lose;
+    				result = ment.getLose();
     			}
     		}
     		
     		if(userInput.equals("Scssior")) {
     			if(computerInput.equals("Paper")) {
-    				result = win;
+    				result = ment.getWin();
     			}
     			if(computerInput.equals("Rock")) {
-    				result = lose;
+    				result = ment.getLose();
     			}
     		}
     		
     		if(userInput.equals("Paper")) {
     			if(computerInput.equals("Rock")) {
-    				result = win;
+    				result = ment.getWin();
     			}
     			if(computerInput.equals("Scssior")) {
-    				result = lose;
+    				result = ment.getLose();
     			}
     		}
     	}

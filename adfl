@@ -1,0 +1,40 @@
+[1mdiff --git a/src/rock_scssior_paper/run/GameRun.java b/src/rock_scssior_paper/run/GameRun.java[m
+[1mdeleted file mode 100644[m
+[1mindex dbc2004..0000000[m
+[1m--- a/src/rock_scssior_paper/run/GameRun.java[m
+[1m+++ /dev/null[m
+[36m@@ -1,34 +0,0 @@[m
+[31m-package rock_scssior_paper.run;[m
+[31m-[m
+[31m-import java.util.Collections;[m
+[31m-import java.util.List;[m
+[31m-import java.util.Scanner;[m
+[31m-[m
+[31m-import rock_scssior_paper.game.Game;[m
+[31m-import rock_scssior_paper.item.Items;[m
+[31m-import rock_scssior_paper.result.Ment;[m
+[31m-[m
+[31m-public class GameRun {[m
+[31m-[m
+[31m-	public static void main(String[] args) {[m
+[31m-		// TODO Auto-generated method stub[m
+[31m-		[m
+[31m-		Items items = new Items(); [m
+[31m-		Game game = new Game();[m
+[31m-		Ment ment = new Ment();[m
+[31m-		[m
+[31m-		System.out.println(ment.getstart());[m
+[31m-		[m
+[31m-		Scanner scanner = new Scanner(System.in);[m
+[31m-        System.out.println(ment.getInputRequest());        [m
+[31m-        String userInput = scanner.nextLine();[m
+[31m-        [m
+[31m-		List<String> itemList = items.getItem();[m
+[31m-		Collections.shuffle(itemList);[m
+[31m-		String result = game.rpsGame(userInput, itemList.get(0));[m
+[31m-		[m
+[31m-		System.out.println(ment.getUserInput() + userInput);[m
+[31m-		System.out.println(ment.getComputerInput() + itemList.get(0));[m
+[31m-		System.out.print(result);[m
+[31m-	}[m
+[31m-}[m
