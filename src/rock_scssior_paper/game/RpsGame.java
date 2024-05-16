@@ -9,30 +9,33 @@ import rock_scssior_paper.item.Items;
 
 public class RpsGame implements IGame{
 	
-	public static boolean startYn = true;
-	
-    public void startGame(){
+	private static String userInput = "";
+	public static boolean restartYn = false;
+	public static boolean randomYn = false;
+    
+    public void InputItem(String item){
         
-		Scanner scanner = new Scanner(System.in);
 		String inputVal = possibleInput();
-        
-		while(startYn) {
-			System.out.println("게임시작");
-			System.out.println(inputVal);
-			System.out.println("값을 입력해주세요~");
-			
-			String userInput = scanner.nextLine();
-			rpsGame(userInput);
-		}
+		userInput = item;
+	
+		System.out.println("게임시작");
+		System.out.println(inputVal);
+		System.out.println("값을 입력해주세요~");
+		
+		game(userInput);
+		
 	}
     
-    public void rpsGame(String userInput){
-    	String win = "이겼습니다";
-    	String lose = "졌습니다";
-    	String draw = "비겼습니다";
+    public void game(String userInput){
+    	String win = "이겼습니다\n";
+    	String lose = "졌습니다\n";
+    	String draw = "비겼습니다\n";
+		String inputVal = possibleInput();
     	
+		System.out.println("게임시작");
+		System.out.println(inputVal);
+	
     	Items items = new Items();
-    	Scanner scanner = new Scanner(System.in);
         
     	List<String> itemList = items.getItem();
 		Collections.shuffle(itemList);
@@ -41,14 +44,12 @@ public class RpsGame implements IGame{
     	
         
     	if (!validation(userInput)) {
-    		System.out.println("입력하신 값이 올바르지 않습니다. \n값을 임으로 입력 할까요?\nYes : Y");
-    		String RandomYn = scanner.nextLine();
-    		
-    		if(RandomYn.equals("Y")) {
+    		if(randomYn) {
+    			System.out.println("입력한 값이 잘못되어 값을 임의로 설정합니다.");
     			Random random = new Random();
     			userInput = itemList.get(random.nextInt(itemList.size()-1));
     		} else {
-        		endGame(result);
+        		System.out.println("값을 다시 입력해 주세요.");
     		}
 
     	}
@@ -84,11 +85,11 @@ public class RpsGame implements IGame{
     		}
     	}
     	
-		result += "\n사용자 입력 값 : " + userInput + "\n컴퓨터 입력 값 : " +itemList.get(0);
+		result += "사용자 입력 값 : " + userInput + "\n컴퓨터 입력 값 : " +itemList.get(0);
+		System.out.println(result);
 		
-		endGame(result);
-    
-    };
+		System.out.println("게임을 종료합니다.");
+	};
     
     public boolean validation(String userInput) {
     	boolean Check = false;
@@ -97,7 +98,6 @@ public class RpsGame implements IGame{
     	
     	if(userInput.contains(" ")) {
     		userInput.replaceAll(" ", "");
-    		System.out.println("입력하신 값에 공백이 존재하여 제거 했습니다^^");
     	};
         
     	for(int i=0; i<itemList.size(); i++) {
@@ -127,14 +127,11 @@ public class RpsGame implements IGame{
 	return inputVal;
 	}
 	
-    public void endGame(String result){
-    	Scanner scanner = new Scanner(System.in);
-		System.out.println(result);
-		System.out.println("재시작 하시겠습니까?\nYes : Y");
-		
-		String restart = scanner.nextLine();
-		if(!restart.equals("Y")) {
-			startYn = false;
-		}
+    public void randomItem(boolean yn){
+    	if(yn) {
+    		randomYn = true;
+    	} else {
+    		randomYn = false;
+    	}
     }
 }
