@@ -3,7 +3,8 @@ package rock_scssior_paper.game;
 public interface IGame {
     
 	// 게임 실행 로직
-	public void game(String userInput);
+	// 결과값을 반환
+	public String game(String userInput);
 	
 	// 사용자 입력 값
 	public void InputItem(String item);

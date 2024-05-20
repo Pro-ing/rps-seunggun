@@ -3,9 +3,9 @@ package rock_scssior_paper.game;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 import rock_scssior_paper.item.Items;
+import rock_scssior_paper.type.ResultType;
 
 public class RpsGame implements IGame{
 	
@@ -26,10 +26,7 @@ public class RpsGame implements IGame{
 		
 	}
     
-    public void game(String userInput){
-    	String win = "이겼습니다\n";
-    	String lose = "졌습니다\n";
-    	String draw = "비겼습니다\n";
+    public String game(String userInput){
 		String inputVal = possibleInput();
     	
 		System.out.println("게임시작");
@@ -40,8 +37,8 @@ public class RpsGame implements IGame{
     	List<String> itemList = items.getItem();
 		Collections.shuffle(itemList);
 		String computerInput = itemList.get(0);
-		String result = "";
-    	
+		
+		System.out.println("\n사용자 입력 값 : " + userInput + "\n컴퓨터 입력 값 : " +itemList.get(0));
         
     	if (!validation(userInput)) {
     		if(randomYn) {
@@ -49,46 +46,42 @@ public class RpsGame implements IGame{
     			Random random = new Random();
     			userInput = itemList.get(random.nextInt(itemList.size()-1));
     		} else {
-        		System.out.println("값을 다시 입력해 주세요.");
+        		System.out.println("입력한 값이 잘못 되었습니다.");
     		}
 
     	}
-    	
+
     	if(userInput.equals(computerInput)) {
-    		result = draw;
-    	} else {
-    		if(userInput.equals("Rock")) {
-    			if(computerInput.equals("Scssior")) {
-    				result = win;
-    			}
-    			if(computerInput.equals("Paper")) {
-    				result = lose;
-    			}
-    		}
-    		
-    		if(userInput.equals("Scssior")) {
-    			if(computerInput.equals("Paper")) {
-    				result = win;
-    			}
-    			if(computerInput.equals("Rock")) {
-    				result = lose;
-    			}
-    		}
-    		
-    		if(userInput.equals("Paper")) {
-    			if(computerInput.equals("Rock")) {
-    				result = win;
-    			}
-    			if(computerInput.equals("Scssior")) {
-    				result = lose;
-    			}
-    		}
-    	}
+    		return ResultType.DRAW.ment();
+    	} 
     	
-		result += "사용자 입력 값 : " + userInput + "\n컴퓨터 입력 값 : " +itemList.get(0);
-		System.out.println(result);
+		if(userInput.equals("Rock")) {
+			if(computerInput.equals("Scssior")) {
+				return ResultType.WIN.ment();
+			}
+			if(computerInput.equals("Paper")) {
+				return ResultType.LOSE.ment();
+			}
+		}
 		
-		System.out.println("게임을 종료합니다.");
+		if(userInput.equals("Scssior")) {
+			if(computerInput.equals("Paper")) {
+				return ResultType.WIN.ment();
+			}
+			if(computerInput.equals("Rock")) {
+				return ResultType.LOSE.ment();
+			}
+		}
+		
+		if(userInput.equals("Paper")) {
+			if(computerInput.equals("Rock")) {
+				return ResultType.WIN.ment();
+			}
+			if(computerInput.equals("Scssior")) {
+				return ResultType.LOSE.ment();
+			}
+		}
+		return "inputError";
 	};
     
     public boolean validation(String userInput) {
