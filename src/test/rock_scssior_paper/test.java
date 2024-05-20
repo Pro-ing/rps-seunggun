@@ -25,7 +25,7 @@ class test {
         computer2.setName();
         
 		IGame game = new RpsGame();
-		game.playGame();
+		game.startGame();
 	}
 
 }
