@@ -4,28 +4,20 @@ import org.junit.jupiter.api.Test;
 
 import rock_scssior_paper.game.IGame;
 import rock_scssior_paper.game.RpsGame;
-import rock_scssior_paper.user.Computer;
-import rock_scssior_paper.user.IPlayer;
-import rock_scssior_paper.user.User;
+import rock_scssior_paper.type.ResultType;
 
 class test {
 
 	@Test
 	void test() {
-		User user1 = new User();
-		user1.setName("승건1");
-
-		User user2= new User();
-		user2.setName("승건2");
         
-        Computer computer1 = new Computer();
-        computer1.setName();
-        
-        Computer computer2 = new Computer();
-        computer2.setName();
-        
-		IGame game = new RpsGame();
-		game.startGame();
+		IGame rpgGame = new RpsGame();
+		ResultType result = rpgGame.game("Rock");
+    	
+		System.out.println(result.ment());
+		
+		System.out.println("\n게임을 종료합니다.");
+		
 	}
 
 }
